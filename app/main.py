@@ -11,3 +11,4 @@ app = FastAPI(title="Bookstore API - Simple")
 app.include_router(authors_router)
 app.include_router(books_router)
 app.include_router(reviews_router)
+
