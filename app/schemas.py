@@ -1,42 +1,41 @@
-from pydantic import BaseModel, Field
-from uuid import UUID
-from typing import Optional
+from pydantic import BaseModel
 
 class AuthorBase(BaseModel):
-    name: str = Field(..., example="George Orwell")
+    name: str
+    bio: str | None = None
 
 class AuthorCreate(AuthorBase):
     pass
 
 class Author(AuthorBase):
-    id: UUID
-
+    id: int
     class Config:
         orm_mode = True
 
+
 class BookBase(BaseModel):
-    title: str = Field(..., example="1984")
-    author_id: UUID
+    title: str
+    description: str | None = None
+    author_id: int
 
 class BookCreate(BookBase):
     pass
 
 class Book(BookBase):
-    id: UUID
-
+    id: int
     class Config:
         orm_mode = True
 
+
 class ReviewBase(BaseModel):
-    book_id: UUID
-    content: str = Field(..., example="A very strong read.")
-    rating: int = Field(..., ge=1, le=5, example=5)
+    content: str
+    rating: int
+    book_id: int
 
 class ReviewCreate(ReviewBase):
     pass
 
 class Review(ReviewBase):
-    id: UUID
-
+    id: int
     class Config:
         orm_mode = True

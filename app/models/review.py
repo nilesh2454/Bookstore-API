@@ -1,15 +1,13 @@
-from sqlalchemy import Column, String, Integer, ForeignKey
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-import uuid
 from app.database import Base
 
 class Review(Base):
     __tablename__ = "reviews"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(Integer, primary_key=True, index=True)
     content = Column(String, nullable=False)
-    rating = Column(Integer, nullable=False)
+    rating = Column(Integer)
+    book_id = Column(Integer, ForeignKey("books.id", ondelete="CASCADE"))
 
-    book_id = Column(UUID(as_uuid=True), ForeignKey("books.id", ondelete="CASCADE"), nullable=False)
-    book = relationship("Book", back_populates="reviews")
+    book = relationship("Book", backref="reviews")
