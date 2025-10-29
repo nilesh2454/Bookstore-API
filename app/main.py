@@ -6,9 +6,9 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Bookstore API with PostgreSQL", version="1.0")
 
-app.include_router(books.router)
-app.include_router(authors.router)
-app.include_router(reviews.router)
+app.include_router(books)
+app.include_router(authors)
+app.include_router(reviews)
 
 @app.get("/")
 def root():
