@@ -9,9 +9,11 @@ __pycache__/
 # Environments
 venv/
 .venv/
-.env
-.env.*
-.envrc
+# NOTE: .env files are intentionally tracked per user request
+# Remove the next lines if you want to ignore env files again
+# .env
+# .env.*
+# .envrc
 
 # Distribution / packaging
 build/
