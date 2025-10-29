@@ -2,7 +2,6 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from typing import Optional
 
-# ---- Author ----
 class AuthorBase(BaseModel):
     name: str = Field(..., example="George Orwell")
 
@@ -15,7 +14,6 @@ class Author(AuthorBase):
     class Config:
         orm_mode = True
 
-# ---- Book ----
 class BookBase(BaseModel):
     title: str = Field(..., example="1984")
     author_id: UUID
@@ -29,7 +27,6 @@ class Book(BookBase):
     class Config:
         orm_mode = True
 
-# ---- Review ----
 class ReviewBase(BaseModel):
     book_id: UUID
     content: str = Field(..., example="A very strong read.")

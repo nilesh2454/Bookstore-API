@@ -10,5 +10,5 @@ class Author(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name = Column(String, nullable=False)
 
-    # One-to-many: author -> books
+   
     books = relationship("Book", back_populates="author", cascade="all, delete-orphan")

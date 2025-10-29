@@ -3,7 +3,7 @@ from typing import List
 from app import models, schemas
 import uuid
 
-# ---------- Authors ----------
+# Authors
 def create_author(db: Session, author_in: schemas.AuthorCreate) -> models.Author:
     db_obj = models.Author(name=author_in.name)
     db.add(db_obj)
@@ -21,7 +21,7 @@ def get_author(db: Session, author_id: str):
 def list_authors(db: Session, skip: int = 0, limit: int = 100) -> List[models.Author]:
     return db.query(models.Author).offset(skip).limit(limit).all()
 
-# ---------- Books ----------
+# Books
 def create_book(db: Session, book_in: schemas.BookCreate) -> models.Book:
     db_obj = models.Book(title=book_in.title, author_id=book_in.author_id)
     db.add(db_obj)
@@ -39,7 +39,7 @@ def get_book(db: Session, book_id: str):
 def list_books(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Book).offset(skip).limit(limit).all()
 
-# ---------- Reviews ----------
+# Reviews
 def create_review(db: Session, review_in: schemas.ReviewCreate) -> models.Review:
     db_obj = models.Review(content=review_in.content, rating=review_in.rating, book_id=review_in.book_id)
     db.add(db_obj)
