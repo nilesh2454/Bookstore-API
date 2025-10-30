@@ -6,8 +6,8 @@ class Book(Base):
     __tablename__ = "books"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, nullable=False)
-    description = Column(String)
-    author_id = Column(Integer, ForeignKey("authors.id", ondelete="CASCADE"))
+    title = Column(String, index=True, nullable=False)
+    description = Column(String, nullable=True)
+    author_id = Column(Integer, ForeignKey("authors.id"))
 
-    author = relationship("Author", backref="books")
+    author = relationship("Author")

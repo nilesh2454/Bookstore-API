@@ -1,8 +1,9 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class AuthorBase(BaseModel):
     name: str
-    bio: str | None = None
+    bio: Optional[str] = None
 
 class AuthorCreate(AuthorBase):
     pass
@@ -10,12 +11,12 @@ class AuthorCreate(AuthorBase):
 class Author(AuthorBase):
     id: int
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class BookBase(BaseModel):
     title: str
-    description: str | None = None
+    description: Optional[str] = None
     author_id: int
 
 class BookCreate(BookBase):
@@ -23,8 +24,9 @@ class BookCreate(BookBase):
 
 class Book(BookBase):
     id: int
+    author: Optional[Author]
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class ReviewBase(BaseModel):
@@ -37,5 +39,6 @@ class ReviewCreate(ReviewBase):
 
 class Review(ReviewBase):
     id: int
+    book: Optional[Book]
     class Config:
-        from_attributes = True
+        orm_mode = True

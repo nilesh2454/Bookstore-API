@@ -7,7 +7,7 @@ class Review(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     content = Column(String, nullable=False)
-    rating = Column(Integer)
-    book_id = Column(Integer, ForeignKey("books.id", ondelete="CASCADE"))
+    rating = Column(Integer, nullable=False)
+    book_id = Column(Integer, ForeignKey("books.id"))
 
-    book = relationship("Book", backref="reviews")
+    book = relationship("Book")

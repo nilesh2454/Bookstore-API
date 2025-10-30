@@ -5,5 +5,5 @@ class Author(Base):
     __tablename__ = "authors"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
+    name = Column(String, unique=True, index=True, nullable=False)
     bio = Column(String, nullable=True)
